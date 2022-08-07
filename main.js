@@ -1,5 +1,7 @@
 const mario = document.querySelector('.mario')
 const pipe = document.querySelector('.pipe')
+const nuvens = document.querySelector('.nuvens')
+
 
 const jump = () => {
     mario.classList.add('jump')
@@ -10,6 +12,7 @@ const jump = () => {
 
 const collisionCheck = setInterval(() => {
     const pipePosition = pipe.offsetLeft
+    const nuvensPosition = nuvens.offsetLeft
     const marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
 
     if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0) {
@@ -22,6 +25,9 @@ const collisionCheck = setInterval(() => {
         mario.src = 'assets/mario_game_over-removebg.png'
         mario.style.width = '50px'
         mario.style.left = '45px'
+
+        nuvens.style.animation = 'none'
+        nuvens.style.left = `${nuvensPosition}px`
     }
 }, 10);
 document.addEventListener("keydown", jump)
