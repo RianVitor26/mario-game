@@ -18,6 +18,10 @@ const collisionCheck = setInterval(() => {
 
         mario.style.animation = 'none'
         mario.style.bottom = `${marioJumpPosition}px`
+
+        mario.src = 'assets/mario_game_over-removebg.png'
+        mario.style.width = '50px'
+        mario.style.left = '45px'
     }
 }, 10);
 document.addEventListener("keydown", jump)
