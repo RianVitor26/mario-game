@@ -6,17 +6,16 @@
 
 .game-board{
     width: 100%;
-    height: 500px;
-    border-image-source: "";
-    margin: 0 auto;
+    height: 100vh;
+    border-bottom: 30px solid rgb(12, 112, 17);
     position: relative;
     overflow: hidden;
-    background: linear-gradient(#87CEEB, #E0F6FF);    
+    background: linear-gradient(#87CEEB, #E0F6FF); 
 }
 
 .pipe{
     position: absolute;
-    top: 85%;
+    top: 89%;
     width: 80px;
     animation: pipe-animation 3s infinite backwards linear;
 }
@@ -36,7 +35,7 @@
 }
 
 .jump{
-    animation: jump-animation 600ms ease-out;
+    animation: jump-animation 600ms ease-in-out;
 }
 
 @keyframes pipe-animation {
