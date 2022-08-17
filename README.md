@@ -1,16 +1,26 @@
-# Joguinho nostálgico do Mario
-[Jogar o jogo](https://rianvitor26.github.io/SimpleMarioGame/)
+# Título do Projeto
 
-## Em desenvolvimento...
-![mario-walking-unscreen](https://user-images.githubusercontent.com/77061521/183329909-c07feb33-7f5f-417b-9649-3b9ef70b3994.gif)
+## Descrição do Projeto 📌
+>Esse projeto aproveita as funcionalidades do CSS e do JavaScript para fazer uma página "jogável" com a temática do Mario
+>
+<br>
 
-## Tecnologias usadas
+[Visualizar a página](https://github.com/RianVitor26/Mario-Game-Animation) 🔍
+
+<br>
+
+## Tecnologias usadas 🛠 
+
 * JavaScript
-* CSS
+* CSS animation
 * HTML
+<br>
+<br>
 
-## Objetivo do projeto
-Exercitar meus conhecimetos em JavaScript, CSS animações e desenvolver algo que seja nostálgico para mim
-
-feito com ❤️ por [RianVitor26](https://github.com/RianVitor26) 😊
-
+## Objetivo(s) do projeto 🎯
+- Exercitar a lógica de programação
+- Lembrar o uso de keyframes animações
+- Usar o DOM
+<br>
+<br>
+**Developed with ❤️ by** - [RianVitor26](https://github.com/RianVitor26)😊
