@@ -10,6 +10,21 @@ const jump = () => {
     }, 600);
 }
 
+const transformSonic = () =>{
+    mario.classList.add('transform');
+
+    setTimeout(() => {
+        mario.classList.remove('transform')
+        mario.src = 'assets/sonic-walking-unscreen.gif';
+
+    }, 300);
+
+    setTimeout(() => {
+        mario.src = 'assets/mario-walking-unscreen.gif';
+    }, 5000);
+}
+
+
 const collisionCheck = setInterval(() => {
     const pipePosition = pipe.offsetLeft
     const nuvensPosition = nuvens.offsetLeft
@@ -30,4 +45,23 @@ const collisionCheck = setInterval(() => {
         nuvens.style.left = `${nuvensPosition}px`
     }
 }, 10);
-document.addEventListener("keydown", jump)
+
+document.addEventListener('keydown', (e) => {
+    // console.log(e.key);
+    
+    if (e.key === 'ArrowUp') {
+       jump();
+    }
+});
+
+
+document.addEventListener('keydown', (e) => {
+    console.log(e.key.space);
+    
+    if (e.key === 'Z' || e.key === 'z') {
+       transformSonic();
+    }
+
+
+
+})

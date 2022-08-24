@@ -38,6 +38,20 @@
     animation: jump-animation 600ms ease-in-out;
 }
 
+.transform{
+    animation: transform-sonic 600ms ease-in-out;
+}
+
+
+@keyframes transform-sonic {
+    from{
+        opacity: 100%;
+    }
+    to{
+        opacity: 40%;
+    }
+}
+
 @keyframes pipe-animation {
     from{
         right: -90px;
