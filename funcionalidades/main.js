@@ -61,7 +61,56 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Z' || e.key === 'z') {
        transformSonic();
     }
-
-
-
 })
+
+// ============================================ MENU GAME ===========================================================
+
+
+const menu = document.querySelector('.menu')
+const input = document.querySelector('.input')
+const button = document.querySelector('.button')
+
+
+// Open menu when window loaded
+function showMenu() {
+    menu.classList.add('open')
+}
+window.addEventListener('load', showMenu)
+
+// Select option and active one function
+button.addEventListener('click', () => {
+    let option = input.value
+    switch (option) {
+        case '1': startGame()
+            
+            break;
+        case '2': console.log('restart')
+            
+            break;
+        case '3': closeGame()
+            
+            break;
+    
+        default: alert('Insira uma opção válida')
+            break;
+    }
+})
+
+
+
+
+
+// Menu functions
+function startGame() {
+    menu.classList.remove('open')
+}
+ 
+function restart() {
+    console.log('in building...')
+}
+ 
+function closeGame() {
+    window.close()
+}
+ 
+
