@@ -1,6 +1,8 @@
 const mario = document.querySelector('.mario')
 const pipe = document.querySelector('.pipe')
 const nuvens = document.querySelector('.nuvens')
+const gameOver = document.querySelector('.game-over')
+
 
 
 const jump = () => {
@@ -43,6 +45,10 @@ const collisionCheck = setInterval(() => {
 
         nuvens.style.animation = 'none'
         nuvens.style.left = `${nuvensPosition}px`
+
+        //Show menu and game over message
+        showMenu()
+        gameOver.classList.add('over')
     }
 }, 10);
 
@@ -64,16 +70,27 @@ document.addEventListener('keydown', (e) => {
 })
 
 // ============================================ MENU GAME ===========================================================
-
-
 const menu = document.querySelector('.menu')
 const input = document.querySelector('.input')
 const button = document.querySelector('.button')
 
+// Functions for stop and init animation
+function stopAnimation() {
+    pipe.style.display = 'none'
+    mario.style.display = 'none'
+    nuvens.style.display = 'none'
+}
+
+function initAnimation() {
+    pipe.style.display = 'block'
+    mario.style.display = 'block'
+    nuvens.style.display = 'block'
+}
 
 // Open menu when window loaded
 function showMenu() {
     menu.classList.add('open')
+    stopAnimation()
 }
 window.addEventListener('load', showMenu)
 
@@ -97,12 +114,10 @@ button.addEventListener('click', () => {
 })
 
 
-
-
-
 // Menu functions
 function startGame() {
     menu.classList.remove('open')
+    initAnimation()
 }
  
 function restart() {
