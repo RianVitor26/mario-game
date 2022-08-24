@@ -1,6 +1,8 @@
 const mario = document.querySelector('.mario')
 const pipe = document.querySelector('.pipe')
 const nuvens = document.querySelector('.nuvens')
+const gameOver = document.querySelector('.game-over')
+
 
 
 const jump = () => {
@@ -44,7 +46,9 @@ const collisionCheck = setInterval(() => {
         nuvens.style.animation = 'none'
         nuvens.style.left = `${nuvensPosition}px`
 
+        //Show menu and game over message
         showMenu()
+        gameOver.classList.add('over')
     }
 }, 10);
 

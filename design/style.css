@@ -16,6 +16,24 @@
     background: linear-gradient(#87CEEB, #E0F6FF); 
 }
 
+.game-over{
+    display: none;
+}
+
+.game-over.over{
+    display: inline;
+}
+
+h2{
+    animation-name: game-over;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 10vh;
+    font-family: 'Common Pixel', sans-serif;
+}
+
 .pipe{
     position: absolute;
     top: 89%;
@@ -146,6 +164,14 @@ button:hover{
     }
     to{
         right: 100%;
+    }
+}
+@keyframes game-over {
+    from{
+        color:rgb(240, 25, 25)
+    }
+    to{
+        color: #5671bd;
     }
 }
 
