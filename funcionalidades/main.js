@@ -43,6 +43,8 @@ const collisionCheck = setInterval(() => {
 
         nuvens.style.animation = 'none'
         nuvens.style.left = `${nuvensPosition}px`
+
+        showMenu()
     }
 }, 10);
 
