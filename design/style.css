@@ -24,7 +24,7 @@
     display: inline;
 }
 
-h2{
+.game-over p{
     animation-name: game-over;
     animation-duration: 500ms;
     animation-iteration-count: infinite;
