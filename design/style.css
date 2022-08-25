@@ -127,10 +127,25 @@ button:hover{
     background-color: #ffffff;
 }
 
+.medal-bonus{
+    width: 30px;
+    display: flex;
+    justify-content: end;
+    
+}
+
+
 /** VIDAS MÁRIO **/
-.vidas{
+.game-ponts{
    display: flex;
-   justify-content: end;
+   flex-direction: row;
+   align-items: center;
+   justify-content:space-around;
+}
+
+.game-ponts > .vidas{
+    display: flex;
+    flex-direction: row;
 }
 
 .vidas>img{
@@ -139,7 +154,28 @@ button:hover{
 }
 
 
+/** SCORES **/
 
+.score{
+    display: flex;
+    flex-direction: row;
+}
+
+.score :is(p, span){
+    font-family: 'Common Pixel', sans-serif;
+}
+
+
+/** Medal Bonus **/
+
+.medal-bonus{
+    position: absolute;
+    width: 50px;
+    bottom: 0;
+    right: 0;
+    animation:  medal-animation 4s infinite backwards linear;
+
+}
 
 /* KEYFRAMES ANIMAÇÃO */
 
@@ -150,6 +186,15 @@ button:hover{
     }
     to{
         opacity: 40%;
+    }
+}
+
+@keyframes medal-animation {
+    from{
+        right: -90px;
+    }
+    to{
+        right: 100%;
     }
 }
 

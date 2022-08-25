@@ -2,11 +2,15 @@ const mario = document.querySelector('.mario')
 const pipe = document.querySelector('.pipe')
 const nuvens = document.querySelector('.nuvens')
 const gameOver = document.querySelector('.game-over')
-const vidas_document = document.querySelector('.vidas')
+const vidas_document = document.querySelector('.vidas');
+const MedalBonus_document = document.querySelector('.medal-bonus');
+const Score_document = document.querySelector('.score > p');
+
 
 
 var game=0;
 var vidas_max = 3;
+var score = 0;
 var remove_vida_aux = 1;
 
 
@@ -38,13 +42,29 @@ const Game = setInterval(() => {
     const collisionCheck = setInterval(() => {
         const pipePosition = pipe.offsetLeft
         const nuvensPosition = nuvens.offsetLeft
-        const marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
+        var marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
+        const MedalBonusPositionLeft = MedalBonus_document.offsetLeft
+        const MedalBonusPositionTop = MedalBonus_document.offsetTop
+
 
         if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0 && remove_vida_aux == 1) {
             vidas_max-=1;
             vidas(vidas_max);
             remove_vida_aux = 0;
         }
+
+
+        // Medal 
+
+        var marioJumpPosition = +window.getComputedStyle(mario).top.replace('px', ' ')
+
+        if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0 && remove_vida_aux == 1) {
+            score+=1;
+            // console.log('Mario: ', marioJumpPosition);
+            // console.log('Medal: ', MedalBonusPosition);
+            remove_vida_aux = 0;
+        }
+
 
     }, 10);
         if(n_vidas()==0){
@@ -234,9 +254,15 @@ function n_vidas(){
 
 
 
+// Medal Bonus
+const MedalBonus = setInterval(() => {
+    var bottom = Math.floor(Math.random() * 200);
+    MedalBonus_document.style.bottom = bottom+'px';
+
+}, 3000);
 
 
-
-
-
-
+// Update Score
+const UpdateScore = setInterval(() => {
+    Score_document.innerHTML = score;
+}, 100);
