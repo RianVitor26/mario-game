@@ -4,6 +4,9 @@ const nuvens = document.querySelector('.nuvens')
 const gameOver = document.querySelector('.game-over')
 const vidas_document = document.querySelector('.vidas')
 
+
+const soundTrack = new Audio()
+soundTrack.src = '../assets/efeitos_trilhasonora1.mp3'
 const gameOverSound = new Audio()
 gameOverSound.src = '../assets/efeitos_gameover.wav'
 const collisionSound = new Audio()
@@ -11,10 +14,10 @@ collisionSound.src = '../assets/efeitos_hit.wav'
 const jumpSound = new Audio()
 jumpSound.src = '../assets/efeitos_pulo2.wav'
 
-const soundEffects = [collisionSound, gameOverSound, jumpSound]
+const soundEffects = [collisionSound, gameOverSound, jumpSound, soundTrack]
 setVolume()
 function setVolume() {
-    soundEffects.map(effect => effect.volume = 0.2)
+    soundEffects.map(effect => effect.volume = 0.3)
 }
 
 var game=0;
@@ -202,6 +205,7 @@ function startGame() {
     gameOver.classList.remove('over')
     menu.classList.remove('open')
     initAnimation()
+    soundTrack.play()
 }
  
 function restart() {
