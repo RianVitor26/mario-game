@@ -4,6 +4,18 @@ const nuvens = document.querySelector('.nuvens')
 const gameOver = document.querySelector('.game-over')
 const vidas_document = document.querySelector('.vidas')
 
+const gameOverSound = new Audio()
+gameOverSound.src = '../assets/efeitos_gameover.wav'
+const collisionSound = new Audio()
+collisionSound.src = '../assets/efeitos_hit.wav'
+const jumpSound = new Audio()
+jumpSound.src = '../assets/efeitos_pulo2.wav'
+
+const soundEffects = [collisionSound, gameOverSound, jumpSound]
+setVolume()
+function setVolume() {
+    soundEffects.map(effect => effect.volume = 0.2)
+}
 
 var game=0;
 var vidas_max = 3;
@@ -12,6 +24,7 @@ var remove_vida_aux = 1;
 
 const jump = () => {
     mario.classList.add('jump')
+    jumpSound.play()
     setTimeout(() => {
         mario.classList.remove('jump')
     }, 600);
@@ -44,6 +57,7 @@ const Game = setInterval(() => {
             vidas_max-=1;
             vidas(vidas_max);
             remove_vida_aux = 0;
+            collisionSound.play()
         }
 
     }, 10);
@@ -51,7 +65,8 @@ const Game = setInterval(() => {
 
             showMenu()
             gameOver.classList.add('over')
-            game=0;
+            game = 0;
+            gameOverSound.play()
         }
         remove_vida_aux=1;
 }, 3000)
