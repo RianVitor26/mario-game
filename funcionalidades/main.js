@@ -5,6 +5,7 @@ const gameOver = document.querySelector('.game-over')
 const vidas_document = document.querySelector('.vidas')
 
 
+var game=0;
 var vidas_max = 3;
 var remove_vida_aux = 1;
 
@@ -16,6 +17,8 @@ const jump = () => {
     }, 600);
 }
 
+
+// Transforms 
 const transformSonic = () =>{
     mario.classList.add('transform');
 
@@ -48,10 +51,13 @@ const Game = setInterval(() => {
 
             showMenu()
             gameOver.classList.add('over')
+            game=0;
         }
         remove_vida_aux=1;
 }, 3000)
 
+
+// Hotkeys 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowUp') {
        jump();
@@ -78,6 +84,7 @@ function stopAnimation() {
 }
 
 function initAnimation() {
+    game = 1;
     pipe.style.display = 'block'
     mario.style.display = 'block'
     nuvens.style.display = 'block'
@@ -99,15 +106,16 @@ window.addEventListener('load', showMenu)
 
 // Select option and active one function
 button.addEventListener('click', () => {
-    let option = input.value
+    let option = document.querySelectorAll('.options-container > p')[posicao].classList[0]
+    console.log(document.querySelectorAll('.options-container > p')[posicao].classList[0])
     switch (option) {
-        case '1': startGame()
+        case '0': startGame()
             
             break;
-        case '2': restart()
+        case '1': restart()
             
             break;
-        case '3': closeGame()
+        case '2': closeGame()
             
             break;
     
@@ -116,9 +124,67 @@ button.addEventListener('click', () => {
     }
 })
 
+// Select option and active one function
+document.addEventListener('keydown', (e) => {
+
+    if ( e.key == 'Enter'){
+        let option = document.querySelectorAll('.options-container > p')[posicao].classList[0]
+        console.log(document.querySelectorAll('.options-container > p')[posicao].classList[0])
+        switch (option) {
+            case '0': startGame()
+                
+                break;
+            case '1': restart()
+                
+                break;
+            case '2': closeGame()
+                
+                break;
+        
+            default: alert('Insira uma opção válida')
+                break;
+        }
+    }
+})
+
+posicao = 0;
+
+
+// Options select functions
+
+document.addEventListener('keydown', (e)=>{
+    // console.log(e.key);
+
+    if(e.key == 'ArrowDown' && game==0){
+        posicao+=1;
+            document.querySelectorAll('.options-container > p')[posicao].classList.add('select')
+    
+    }
+    else if (e.key == 'ArrowUp' && game==0){
+        posicao -=1;
+            document.querySelectorAll('.options-container > p')[posicao].classList.add('select')
+        
+
+    }
+
+    //Clean Options
+    const CleanOption = setInterval(()=>{
+        for(i = 0; i<3; i++){
+            if(i != posicao){
+              document.querySelectorAll('.options-container > p')[i].classList.remove('select');
+            }
+        }
+    },10);
+
+})
+
+
+
 
 // Menu functions
 function startGame() {
+    vidas_max=3;
+    gameOver.classList.remove('over')
     menu.classList.remove('open')
     initAnimation()
 }
@@ -134,6 +200,10 @@ function restart() {
 function closeGame() {
     window.close()
 }
+
+
+
+
  
 
 // Vidas
@@ -161,3 +231,12 @@ function vidas(vidas_max){
 function n_vidas(){
     return document.querySelectorAll('.vidas > img').length;
 }
+
+
+
+
+
+
+
+
+
