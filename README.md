@@ -6,15 +6,15 @@
 
 <br>
 
-[Visualizar a página](https://github.com/RianVitor26/Mario-Game-Animation) 🔍
+[Visualizar a página](https://rianvitor26.github.io/Mario-Game-Animation/) 🔍
 
 <br>
 
 ## Tecnologias usadas 🛠 
 
-* JavaScript
-* CSS animation
-* HTML
+* [JavaScript](https://www.w3schools.com/js/default.asp)
+* [CSS](https://www.w3schools.com/css/default.asp)
+* [HTML](https://www.w3schools.com/html/default.asp)
 
 <br>
 
@@ -24,5 +24,7 @@
 - Usar o DOM
 
 <br>
+
+Contribuidores:  [HenriqueCsar](https://github.com/HenriqueCsar)
 
 Developed with ❤️ by RianVitor26 😊
