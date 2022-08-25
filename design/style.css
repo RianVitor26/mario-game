@@ -100,6 +100,12 @@ h2{
     font-weight: 700;
 }
 
+.options-container .select{
+    background-color: #3843d4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 input{
     text-align: center;
     width: 50px;
