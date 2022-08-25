@@ -41,7 +41,6 @@ const transformSonic = () =>{
     setTimeout(() => {
         mario.classList.remove('transform')
         mario.src = 'assets/sonic-walking-unscreen.gif';
-
     }, 300);
 
     setTimeout(() => {
@@ -70,6 +69,10 @@ const Game = setInterval(() => {
             gameOver.classList.add('over')
             game = 0;
             gameOverSound.play()
+            soundTrack.pause()
+            setTimeout(() => {
+                gameOverSound.pause()
+            }, 3000)
         }
         remove_vida_aux=1;
 }, 3000)
