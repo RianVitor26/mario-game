@@ -2,7 +2,11 @@ const mario = document.querySelector('.mario')
 const pipe = document.querySelector('.pipe')
 const nuvens = document.querySelector('.nuvens')
 const gameOver = document.querySelector('.game-over')
+const vidas_document = document.querySelector('.vidas')
 
+
+var vidas_max = 3;
+var remove_vida_aux = 1;
 
 
 const jump = () => {
@@ -27,43 +31,35 @@ const transformSonic = () =>{
 }
 
 
-const collisionCheck = setInterval(() => {
-    const pipePosition = pipe.offsetLeft
-    const nuvensPosition = nuvens.offsetLeft
-    const marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
+const Game = setInterval(() => {
+    const collisionCheck = setInterval(() => {
+        const pipePosition = pipe.offsetLeft
+        const nuvensPosition = nuvens.offsetLeft
+        const marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
 
-    if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0) {
-        pipe.style.animation = 'none'
-        pipe.style.left = `${pipePosition}px`
+        if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0 && remove_vida_aux == 1) {
+            vidas_max-=1;
+            vidas(vidas_max);
+            remove_vida_aux = 0;
+        }
 
-        mario.style.animation = 'none'
-        mario.style.bottom = `${marioJumpPosition}px`
+    }, 10);
+        if(n_vidas()==0){
 
-        mario.src = 'assets/mario_game_over-removebg.png'
-        mario.style.width = '50px'
-        mario.style.left = '45px'
-
-        nuvens.style.animation = 'none'
-        nuvens.style.left = `${nuvensPosition}px`
-
-        //Show menu and game over message
-        showMenu()
-        gameOver.classList.add('over')
-    }
-}, 10);
+            showMenu()
+            gameOver.classList.add('over')
+        }
+        remove_vida_aux=1;
+}, 3000)
 
 document.addEventListener('keydown', (e) => {
-    // console.log(e.key);
-    
     if (e.key === 'ArrowUp') {
        jump();
     }
 });
 
 
-document.addEventListener('keydown', (e) => {
-    console.log(e.key.space);
-    
+document.addEventListener('keydown', (e) => {    
     if (e.key === 'Z' || e.key === 'z') {
        transformSonic();
     }
@@ -85,13 +81,20 @@ function initAnimation() {
     pipe.style.display = 'block'
     mario.style.display = 'block'
     nuvens.style.display = 'block'
+
+    /* Vidas */
+    vidas(vidas_max)
+
 }
 
 // Open menu when window loaded
 function showMenu() {
     menu.classList.add('open')
     stopAnimation()
+
 }
+
+
 window.addEventListener('load', showMenu)
 
 // Select option and active one function
@@ -101,7 +104,7 @@ button.addEventListener('click', () => {
         case '1': startGame()
             
             break;
-        case '2': console.log('restart')
+        case '2': restart()
             
             break;
         case '3': closeGame()
@@ -121,7 +124,11 @@ function startGame() {
 }
  
 function restart() {
-    console.log('in building...')
+    vidas_max=3;
+    gameOver.classList.remove('over')
+    menu.classList.remove('open')
+    initAnimation()
+
 }
  
 function closeGame() {
@@ -129,3 +136,28 @@ function closeGame() {
 }
  
 
+// Vidas
+function vidas(vidas_max){
+    // Limpar vidas
+    document.querySelectorAll('.vidas > img').forEach(img => {
+        img.remove('img');
+    })
+
+    // Criar Vidas
+    for(i = 1; i <= vidas_max; i++){
+        img = document.createElement('img');
+        img.src = 'assets/coracao.png';
+        img.classList.add(i+'');
+        vidas_document.appendChild(img);
+    }
+    
+    /* Exibir todas as vidas */
+    document.querySelectorAll('.vidas > img').forEach(vidas => {
+        vidas.style.display = 'block';
+    });
+}
+
+
+function n_vidas(){
+    return document.querySelectorAll('.vidas > img').length;
+}

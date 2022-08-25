@@ -121,6 +121,21 @@ button:hover{
     background-color: #ffffff;
 }
 
+/** VIDAS MÁRIO **/
+.vidas{
+   display: flex;
+   justify-content: end;
+}
+
+.vidas>img{
+    width: 30px;
+    display: none;
+}
+
+
+
+
+/* KEYFRAMES ANIMAÇÃO */
 
 
 @keyframes transform-sonic {
