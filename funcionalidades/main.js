@@ -70,7 +70,7 @@ const jump = () => {
 
 
 
-//
+
 const Game = setInterval(() => {
     const collisionCheck = setInterval(() => {
         const pipePosition = pipe.offsetLeft
@@ -78,9 +78,22 @@ const Game = setInterval(() => {
         var marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
         const MedalBonusPositionLeft = MedalBonus_document.offsetLeft
         const MedalBonusPositionTop = MedalBonus_document.offsetTop
+   
+        //MEDAL COLISION WITH MARIO VERIFY
 
+        if (MedalBonusPositionLeft < 90 &&  MedalBonusPositionLeft) { 
+            score += 1
+            
+            MedalBonus_document.style.display = 'none'
+            setTimeout(() => {
+                MedalBonus_document.style.display = 'block'
+            }, 1000)
 
-
+            addScore()
+            const addScore = () => {
+                Score_document.innerHTML = score
+            }
+        }
 
             //COLLISION VERIFY
         if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0 && remove_vida_aux == 1) {
@@ -279,15 +292,17 @@ function n_vidas(){
 
 
 
-// MEDAL BONUS
+// MEDAL BONUS POSITION
 const MedalBonus = setInterval(() => {
     var bottom = Math.floor(Math.random() * 200);
     MedalBonus_document.style.bottom = bottom+'px';
-
+    console.log(MedalBonus);
 }, 3000);
 
 
+
 // UPDATE SCORE
-const UpdateScore = setInterval(() => {
-    Score_document.innerHTML = score;
-}, 100);
+// const updateScore = setInterval(() => {
+//     Score_document.innerHTML = score;
+// }, 100);
+
