@@ -11,13 +11,13 @@ const Score_document = document.querySelector('.score > p');
 
 //SOUNDS CONFIG
 const soundTrack = new Audio()
-soundTrack.src = '../assets/efeitos_trilhasonora1.mp3'
+soundTrack.src = '/assets/efeitos_trilhasonora1.mp3'
 const gameOverSound = new Audio()
-gameOverSound.src = '../assets/efeitos_gameover.wav'
+gameOverSound.src = '/assets/efeitos_gameover.wav'
 const collisionSound = new Audio()
-collisionSound.src = '../assets/efeitos_hit.wav'
+collisionSound.src = '/assets/efeitos_hit.wav'
 const jumpSound = new Audio()
-jumpSound.src = '../assets/efeitos_pulo2.wav'
+jumpSound.src = '/assets/efeitos_pulo2.wav'
 
 const soundEffects = [collisionSound, gameOverSound, jumpSound, soundTrack]
 setVolume()
@@ -62,7 +62,7 @@ const transformSonic = () =>{
 
 
 
-// 
+//
 const Game = setInterval(() => {
     const collisionCheck = setInterval(() => {
         const pipePosition = pipe.offsetLeft
