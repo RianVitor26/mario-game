@@ -6,6 +6,7 @@ const gameOver = document.querySelector('.game-over')
 const vidas_document = document.querySelector('.vidas');
 const MedalBonus_document = document.querySelector('.medal-bonus');
 const Score_document = document.querySelector('.score > p');
+const game_ponts = document.querySelector('.game-ponts');
 
 
 
@@ -31,6 +32,7 @@ function setVolume() {
 
 
 //VARIABLES
+var MedalBonusPosicao = '';
 var game=0;
 var vidas_max = 3;
 var score = 0;
@@ -74,14 +76,14 @@ const jump = () => {
 const Game = setInterval(() => {
     const collisionCheck = setInterval(() => {
         const pipePosition = pipe.offsetLeft
-        const cloudsPosition = clouds.offsetLeft
+        // const cloudsPosition = clouds.offsetLeft
         var marioJumpPosition = +window.getComputedStyle(mario).bottom.replace('px', ' ')
         const MedalBonusPositionLeft = MedalBonus_document.offsetLeft
         const MedalBonusPositionTop = MedalBonus_document.offsetTop
    
         //MEDAL COLISION WITH MARIO VERIFY
 
-        if (MedalBonusPositionLeft < 90 &&  MedalBonusPositionLeft) { 
+        if (MedalBonusPositionLeft <= 90 && marioJumpPosition >= MedalBonusPosicao  && remove_vida_aux == 1) { 
             score += 1
             
             MedalBonus_document.style.display = 'none'
@@ -89,10 +91,12 @@ const Game = setInterval(() => {
                 MedalBonus_document.style.display = 'block'
             }, 1000)
 
-            addScore()
-            const addScore = () => {
-                Score_document.innerHTML = score
-            }
+            remove_vida_aux = 0;
+
+            // addScore()
+            // const addScore = () => {
+            //     Score_document.innerHTML = score
+            // }
         }
 
             //COLLISION VERIFY
@@ -103,16 +107,7 @@ const Game = setInterval(() => {
             collisionSound.play()
         }
 
-
-
-        // MEDAL CONTROL
-        var marioJumpPosition = +window.getComputedStyle(mario).top.replace('px', ' ')
-        // REMOVE LIFE WHEN MARIO COLLIDED
-        if (pipePosition <= 90 && marioJumpPosition < 70 && pipePosition > 0 && remove_vida_aux == 1) {
-            score+=1;
-            remove_vida_aux = 0;
-        }
-    }, 10)
+    }, 1)
 
 
 
@@ -168,6 +163,8 @@ function stopAnimation() {
     pipe.style.display = 'none'
     mario.style.display = 'none'
     clouds.style.display = 'none'
+    MedalBonus_document.style.display = 'none'
+    game_ponts.style.visibility = 'hidden'
 }
 
 function initAnimation() {
@@ -175,6 +172,9 @@ function initAnimation() {
     pipe.style.display = 'block'
     mario.style.display = 'block'
     clouds.style.display = 'block'
+    game_ponts.style.visibility = 'visible'
+    MedalBonus_document.style.display = 'block'
+
     vidas(vidas_max)
 }
 
@@ -216,12 +216,22 @@ document.addEventListener('keydown', (e) => {
 var posicao = 0;
 document.addEventListener('keydown', (e) => {
     
+    posicao_permission = [0,1,2];
+
     if(e.key == 'ArrowDown' && game == 0){
-        posicao += 1;
+        // Check if a future "Position" is allowed
+        if(posicao_permission.indexOf(posicao+1)>-1){
+            posicao += 1;
+        }
+
             document.querySelectorAll('.options-container > p')[posicao].classList.add('select')
+        
     }
     else if (e.key == 'ArrowUp' && game == 0){
-        posicao -=1;
+        // Check if a future "Position" is allowed
+        if(posicao_permission.indexOf(posicao-1)>-1){
+            posicao -= 1;
+        }
             document.querySelectorAll('.options-container > p')[posicao].classList.add('select')
     }
 
@@ -241,6 +251,7 @@ document.addEventListener('keydown', (e) => {
 // MENU FUNCTIONS
 function startGame() {
     vidas_max=3;
+    score=0;
     gameOver.classList.remove('over')
     menu.classList.remove('open')
     initAnimation()
@@ -248,11 +259,12 @@ function startGame() {
 }
  
 function restart() {
+    score=0;
     vidas_max=3;
     gameOver.classList.remove('over')
     menu.classList.remove('open')
     initAnimation()
-
+    soundTrack.play()
 }
  
 function closeGame() {
@@ -296,13 +308,27 @@ function n_vidas(){
 const MedalBonus = setInterval(() => {
     var bottom = Math.floor(Math.random() * 200);
     MedalBonus_document.style.bottom = bottom+'px';
-    console.log(MedalBonus);
+    MedalBonusPosicao = bottom;
 }, 3000);
 
 
 
-// UPDATE SCORE
-// const updateScore = setInterval(() => {
-//     Score_document.innerHTML = score;
-// }, 100);
 
+
+// UPDATES
+
+    // UPDATE SCORE
+    const updateScore = setInterval(() => {
+        if(game == 1){
+        Score_document.innerHTML = score;
+        }
+    }, 100);
+
+
+    //UPDATE LIFES
+    const updateLifes = setInterval(() =>{
+            //SHOW LIFE ALL
+        if(game == 1){
+            vidas(vidas_max);
+        }
+    }, 100);
