@@ -18,6 +18,8 @@ const collisionSound = new Audio()
 collisionSound.src = 'assets/efeitos_hit.wav'
 const jumpSound = new Audio()
 jumpSound.src = 'assets/efeitos_pulo2.wav'
+const transformSound = new Audio()
+transformSound.src = 'assets/efeitos_transformation.mp3'
 
 const soundEffects = [collisionSound, gameOverSound, jumpSound, soundTrack]
 setVolume()
@@ -47,18 +49,24 @@ const jump = () => {
 
 
 // ESPECIAL TRANSFORM
-const transformSonic = () =>{
-    mario.classList.add('transform');
-    setTimeout(() => {
-        mario.classList.remove('transform')
-        mario.src = 'assets/sonic-walking-unscreen.gif';
-    }, 300);
 
-    setTimeout(() => {
-        mario.src = 'assets/mario-walking-unscreen.gif';
-    }, 5000);
-}
-
+    const transformSonic = () =>{
+        mario.classList.add('transform')  
+        setTimeout(() => {
+            mario.classList.remove('transform')
+            mario.src = 'assets/sonic-walking-unscreen.gif';
+            vidas_max += 1
+            
+        }, 300);
+    
+        setTimeout(() => {
+            mario.src = 'assets/mario-walking-unscreen.gif';
+            img = document.createElement('img');
+            img.src = 'assets/coracao.png';
+            vidas_document.appendChild(img);
+            
+        }, 5000);
+    }
 
 
 
@@ -120,12 +128,17 @@ document.addEventListener('keydown', (e) => {
 
 
 
+
 //Z KEY FOR ESPECIAL TRANSFORM
-document.addEventListener('keydown', (e) => {    
-    if (e.key === 'Z' || e.key === 'z') {
-       transformSonic();
-    }
-})
+if (!mario.classList.contains('transform')) {
+    document.addEventListener('keydown', (e) => {    
+        if (e.key === 'Z' || e.key === 'z') {
+            transformSonic();
+            transformSound.play()
+        }
+    })
+}
+
 
 
 
