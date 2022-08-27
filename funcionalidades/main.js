@@ -30,6 +30,17 @@ function setVolume() {
 }
 
 
+// CHECK DEVICE
+const device = () => {
+    const device = navigator.userAgent;
+    if (/(tablet)/i.test(device)) {
+        return 2; //TABBLET
+    }
+    else if (/Mobile|Android|iP(hone|od)/.test(device)) {
+        return 1; //MOBILE
+    }
+    return 0; //DESKTOP
+};
 
 
 //VARIABLES
@@ -155,19 +166,20 @@ const Game = setInterval(() => {
 
 
 // ARROW_UP KEY FOR JUMP
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowUp') {
-       jump();
-    }
-});
-
+if(device() == 0){
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp' && game==1 && window.getComputedStyle(mario).bottom.replace('px', '') == '0') {
+            jump();
+        }
+    });
+}
 
 
 
 //Z KEY FOR ESPECIAL TRANSFORM
 if (!mario.classList.contains('transform')) {
     document.addEventListener('keydown', (e) => {    
-        if (e.key === 'Z' || e.key === 'z') {
+        if (e.key === 'z') {
             transformSonic();
         }
     })
@@ -235,27 +247,6 @@ document.addEventListener('keydown', (e) => {
         }
     }
 })
-
-//OPTIONS FOR MOBILES
-// button.addEventListener('click', () => {
-//     let option = document.querySelectorAll('.options-container > p')[posicao].classList[0]
-//     console.log(document.querySelectorAll('.options-container > p')[posicao].classList[0])
-//     switch (option) {
-//         case '0': startGame()
-
-//             break;
-//         case '1': restart()
-
-//             break;
-//         case '2': closeGame()
-
-//             break;
-
-//         default: alert('Insira uma opção válida')
-//             break;
-//     }
-// })
-
 
 
 // MENU NAVIGATION WITH KEYS 
@@ -380,3 +371,52 @@ const MedalBonus = setInterval(() => {
             vidas(vidas_max);
         }
     }, 100);
+
+
+
+
+
+
+
+
+
+//MOBILES
+
+
+
+
+
+
+    
+ //OPTIONS FOR MOBILES
+
+ 
+ //CHECK DEVICE USING REG AND USERAGENT
+
+if(device() == 1){
+    function start_game_mobile(thiss) {
+        let option = thiss.classList[0]
+        switch (option) {
+            case '0': startGame()
+
+                break;
+            case '1': restart()
+
+                break;
+            case '2': closeGame()
+
+                break;
+
+            default: alert('Insira uma opção válida')
+                break;
+        }
+    }
+
+
+    document.addEventListener('click', () => {
+        if(window.getComputedStyle(mario).bottom.replace('px', '') == '0'){
+        jump();
+        }
+    })
+
+}
