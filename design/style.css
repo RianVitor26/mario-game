@@ -140,6 +140,7 @@ button:hover{
    flex-direction: row;
    align-items: center;
    justify-content:space-around;
+   margin-top: 20px;
 }
 
 .game-ponts > .vidas{
@@ -150,6 +151,32 @@ button:hover{
 .vidas>img{
     width: 30px;
     display: none;
+}
+
+
+/* Construction of transfomation time */
+.barra_borda{
+    border:5px solid white;
+    border-radius:5px;
+    padding:5px;
+    height: 30px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.438);
+}
+
+.barra_borda .barra_temp{
+    background:#3843d4;
+    height: 10px;
+    width: 180px;
+}
+
+.barra-transform-active{
+    animation: barra-transform-active 15s ease-in-out;
+}
+
+.barra-transform-regain{
+    animation: barra-transform-regain 30s ease-in-out;
+    width: 180px;
 }
 
 
@@ -177,6 +204,25 @@ button:hover{
 }
 
 /* KEYFRAMES ANIMAÇÃO */
+
+
+@keyframes barra-transform-regain {
+    from{
+        width: 0px;
+    }
+    to{
+        width: 180px;
+    }
+}
+
+@keyframes barra-transform-active {
+    from{
+        width: 180px;
+    }
+    to{
+        width: 0;
+    }
+}
 
 
 @keyframes transform-sonic {

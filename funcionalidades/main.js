@@ -7,6 +7,7 @@ const vidas_document = document.querySelector('.vidas');
 const MedalBonus_document = document.querySelector('.medal-bonus');
 const Score_document = document.querySelector('.score > p');
 const game_ponts = document.querySelector('.game-ponts');
+const barra_temp_transform = document.querySelector('.barra_temp');
 
 
 
@@ -37,6 +38,7 @@ var game=0;
 var vidas_max = 3;
 var score = 0;
 var remove_vida_aux = 1;
+var transform_temp = 100;
 
 //JUMP FUNCTION
 const jump = () => {
@@ -53,22 +55,52 @@ const jump = () => {
 // ESPECIAL TRANSFORM
 
     const transformSonic = () =>{
-        mario.classList.add('transform')  
-        setTimeout(() => {
-            mario.classList.remove('transform')
-            mario.src = 'assets/sonic-walking-unscreen.gif';
-            vidas_max += 1
-            
-        }, 300);
-    
-        setTimeout(() => {
-            mario.src = 'assets/mario-walking-unscreen.gif';
-            img = document.createElement('img');
-            img.src = 'assets/coracao.png';
-            vidas_document.appendChild(img);
-            
-        }, 5000);
+        barra_temp_transform.classList.remove('barra-transform-regain');
+        if(barra_temp_transform.clientWidth >= 180){
+
+        
+            mario.classList.add('transform');
+            barra_temp_transform.classList.add('barra-transform-active');
+            transformSound.play()
+
+
+            setTimeout(() => {
+                mario.classList.remove('transform')
+                barra_temp_transform.classList.add('barra-transform-active');
+                mario.src = 'assets/sonic-walking-unscreen.gif';
+                vidas_max += 1
+                
+            }, 300);
+        
+            setTimeout(() => {
+                barra_temp_transform.style.width = '1px';
+                mario.src = 'assets/mario-walking-unscreen.gif';
+                img = document.createElement('img');
+                img.src = 'assets/coracao.png';
+                vidas_document.appendChild(img);
+            }
+        , 15000);
     }
+}
+
+
+// REGAIN TRANSFORM
+
+const regainTransform = setInterval(() =>{
+    // console.log('clientWidth = ', barra_temp_transform.clientWidth);
+    // console.log('Passei nivel - interval')
+    if(barra_temp_transform.clientWidth == 1){
+        barra_temp_transform.classList.remove('barra-transform-active');
+        barra_temp_transform.classList.add('barra-transform-regain');
+        // console.log('Passei nivel - ClientWidth')
+        
+    }
+    //Transformation protection
+    if(barra_temp_transform.clientWidth >= 175){
+        barra_temp_transform.style.width = '180px';
+    }
+
+}, 30)
 
 
 
@@ -142,7 +174,6 @@ if (!mario.classList.contains('transform')) {
     document.addEventListener('keydown', (e) => {    
         if (e.key === 'Z' || e.key === 'z') {
             transformSonic();
-            transformSound.play()
         }
     })
 }
@@ -250,6 +281,7 @@ document.addEventListener('keydown', (e) => {
 
 // MENU FUNCTIONS
 function startGame() {
+    barra_temp_transform.style.width = '180px';
     vidas_max=3;
     score=0;
     gameOver.classList.remove('over')
@@ -259,6 +291,7 @@ function startGame() {
 }
  
 function restart() {
+    barra_temp_transform.style.width = '180px';
     score=0;
     vidas_max=3;
     gameOver.classList.remove('over')
