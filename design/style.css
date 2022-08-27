@@ -1,18 +1,10 @@
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: white;
-}
-
 .game-board{
     width: 100%;
     height: 100vh;
-    border-bottom: 30px solid rgb(12, 112, 17);
+    border-bottom: 30px solid var(--ground-background);
     position: relative;
     overflow: hidden;
-    background: linear-gradient(#87CEEB, #E0F6FF); 
+    background: var(--sky-background); 
 }
 
 .game-over{
@@ -64,8 +56,8 @@
 
 
 .menu{
-    border: 3px solid rgb(255, 255, 255);
-    background-color: #5671bd;
+    border: 3px solid  var(--menu-border-color);
+    background-color: var(--menu-background);
     width: 30%;
     border-radius: 10px;
     height: 50vh;
@@ -100,7 +92,7 @@
 }
 
 .options-container .select{
-    background-color: #3843d4;
+    background-color: var(--menu-select-background);
     padding: 10px;
     border-radius: 5px;
 }
@@ -108,13 +100,13 @@
 input{
     text-align: center;
     width: 50px;
-    color: black;
+    color: var(--text-dark);
     border-radius: 5px;
     border: none;
 }
 
 button{
-    color: black;
+    color: var(--text-dark);
     padding: 5px;
     cursor: pointer;
     border-radius: 5px;
@@ -123,16 +115,14 @@ button{
 }
 
 button:hover{
-    background-color: #ffffff;
+    background-color: var(--button-hover);
 }
 
 .medal-bonus{
     width: 30px;
     display: flex;
-    justify-content: end;
-    
+    justify-content: end;   
 }
-
 
 /** VIDAS MÁRIO **/
 .game-ponts{
@@ -156,16 +146,16 @@ button:hover{
 
 /* Construction of transfomation time */
 .barra_borda{
-    border:5px solid white;
+    border:5px solid var(--energy-bar-border);
     border-radius:5px;
     padding:5px;
     height: 30px;
     width: 200px;
-    background-color: rgba(255, 255, 255, 0.438);
+    background-color: var(--energy-bar-boder);
 }
 
 .barra_borda .barra_temp{
-    background:#3843d4;
+    background: var(--energy-bar-background);
     height: 10px;
     width: 180px;
 }
@@ -279,10 +269,10 @@ button:hover{
 }
 @keyframes game-over {
     from{
-        color:rgb(240, 25, 25)
+        color: var(--game-over-color-1);
     }
     to{
-        color: #5671bd;
+        color: var(--game-over-color-2);
     }
 }
 

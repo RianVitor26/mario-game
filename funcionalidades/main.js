@@ -124,11 +124,6 @@ const Game = setInterval(() => {
             }, 1000)
 
             remove_vida_aux = 0;
-
-            // addScore()
-            // const addScore = () => {
-            //     Score_document.innerHTML = score
-            // }
         }
 
             //COLLISION VERIFY
@@ -240,6 +235,26 @@ document.addEventListener('keydown', (e) => {
         }
     }
 })
+
+//OPTIONS FOR MOBILES
+// button.addEventListener('click', () => {
+//     let option = document.querySelectorAll('.options-container > p')[posicao].classList[0]
+//     console.log(document.querySelectorAll('.options-container > p')[posicao].classList[0])
+//     switch (option) {
+//         case '0': startGame()
+
+//             break;
+//         case '1': restart()
+
+//             break;
+//         case '2': closeGame()
+
+//             break;
+
+//         default: alert('Insira uma opção válida')
+//             break;
+//     }
+// })
 
 
 

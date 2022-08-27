@@ -1,0 +1,23 @@
+/* RESETS */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+:root{
+    /* COLOR PALETTE */
+    --ground-background: rgb(12, 112, 17);
+    --sky-background: linear-gradient(#87CEEB, #E0F6FF); 
+    --menu-border-color: rgb(255, 255, 255);
+    --menu-background: #5671bd;
+    --menu-select-background: #3843d4;
+    --text-dark: black;
+    --button-hover-background: white;
+    --game-over-color-1: rgb(240, 25, 25);
+    --game-over-color-2: #5671bd;
+    --button-hover: white;
+    --energy-bar-background: #3843d4;
+    --energy-bar-border: white;
+}
