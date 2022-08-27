@@ -124,11 +124,6 @@ const Game = setInterval(() => {
             }, 1000)
 
             remove_vida_aux = 0;
-
-            // addScore()
-            // const addScore = () => {
-            //     Score_document.innerHTML = score
-            // }
         }
 
             //COLLISION VERIFY
